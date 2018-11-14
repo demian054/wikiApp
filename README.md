@@ -33,12 +33,14 @@
 	  
 	  	--------------------- execute mode parameters --------------------------- ( M -> Mandatory, O -> Optional )
 	  	
-	  	java -jar WikiApp-1.0.0.jar -execute
+	  	java -jar WikiApp-1.0.0.jar execute
 		 
 		 	This parameter put the program in DESKTOP application mode, have some extra parameters:
 		
 			   url=https://en.wikipedia.org/wiki/NameToFind 		(M) -> url to find source 
-			   file=report.json							 			(O) -> file name to output the results (json format)
+			   file=C:\Users\demian\report.json						(O) -> file name to output the results (json format), 
+			   
+			   note: for file option please check if you have write permissions.
 			   
 			* Responses: in this mode we have two different ways to get the information, the first are the standard 
 					response you can see the output in console or in a file if you pas a -file parameter with the path
@@ -47,7 +49,7 @@
 			   
 		--------------------- server mode parameters --------------------------- ( M -> Mandatory, O -> Optional )
 			   
-	    java -jar WikiApp-1.0.0.jar -server
+	    java -jar WikiApp-1.0.0.jar service
 	    
 	    	This parameter put the program in WEB application mode, have some extra parameters:
 	

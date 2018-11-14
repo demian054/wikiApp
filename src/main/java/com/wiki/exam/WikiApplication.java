@@ -19,11 +19,18 @@ public class WikiApplication {
 		
 		// Service		
 		if (arguments.containsKey(Parameters.service.toString())) {
+			System.out.println(" Service Mode Begin ");
+			System.out.println("params -> "+arguments);
 			SpringApplication.run(WikiApplication.class, args);
 			
 		// Execute
-		} else if (arguments.containsKey(Parameters.Execute.toString())) {
+		} else if (arguments.containsKey(Parameters.execute.toString())) {
+			System.out.println(" Execute Mode Begin ");
+			System.out.println("params -> "+arguments);
 			WikiExecController.run(arguments);
+		
+		} else {
+			System.out.println("No mode selected... please use 'execute' o 'service' parameters");
 		}
 	}
 

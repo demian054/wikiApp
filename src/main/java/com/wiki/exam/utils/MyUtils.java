@@ -32,7 +32,7 @@ public class MyUtils {
 			String[] spliter = param.split("=");
 			//System.out.println(spliter.length);
 			if (spliter.length<=1) {
-				arguments.put(spliter[0], "true");
+				arguments.put(spliter[0], null);
 			} else {
 				arguments.put(spliter[0], spliter[1]);
 			}

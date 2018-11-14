@@ -22,7 +22,7 @@ public class WikiReader{
 	final String wikiBase;
 	final String protocolBase = "https://";
 	
-	final String contentDivSelector = "div#mw-content-text";
+	final String contentDivSelector = "div#mw-content-text p";
 	
 	final int searchSizeTopict = 50;
 	final int finalSizeTopict = 5;
@@ -31,15 +31,13 @@ public class WikiReader{
 	
 	final List<String> reservedWords = Arrays.asList("edit", "editar");
 
-
 	public WikiReader(String url) {
 		this.url = url; 
 		this.wikiBase = MyUtils.getHost(url);
 	}
 	
-	
 	public Content begin(){
-		Content pContent = new Content(url, MyUtils.getKeyWordFromUrl(url));
+		Content pContent = new Content(fixUrl(url), MyUtils.getKeyWordFromUrl(url));
 		// get the article
 		Document pDocument = getDocument(url);
 		pContent.setExtract(pDocument.text());
@@ -60,7 +58,6 @@ public class WikiReader{
 							.filter(word -> word.contains(pContent.getKeyWord()))
 							.count();
 					if ( ocurrences > 0 ) {
-						//System.out.println(cContent.getKeyWord()+ " -> "+ocurrences);
 						cContent.setStrong(ocurrences);
 						relatedContent.put(cContent, ocurrences);
 					}
@@ -76,8 +73,6 @@ public class WikiReader{
 				});		
 		}
 		return pContent;
-
-		
 	}
 	
 	Comparator<Map.Entry<Content, Long>> by = new Comparator<Map.Entry<Content, Long>>() {
@@ -102,8 +97,6 @@ public class WikiReader{
 	
 	
 	private Document getDocument(String url) {		
-		if (!url.contains("wikipedia")) url = wikiBase+url; 
-		if (!url.contains("http")) url = protocolBase+url;
 		try {
 			return Jsoup.connect(url).get();
 		} catch (IOException e) {
@@ -113,9 +106,15 @@ public class WikiReader{
 		return null;
 	}
 	
+	private String fixUrl(String url) {
+		if (!url.contains("wikipedia")) url = wikiBase+url; 
+		if (!url.contains("http")) url = protocolBase+url;
+		return url;
+	}
+	
 	private Content newContent(Element element) {
 		return new Content(
-				element.attr("href"),
+				fixUrl(element.attr("href")),
 				element.text().toLowerCase()
 			);
 	}

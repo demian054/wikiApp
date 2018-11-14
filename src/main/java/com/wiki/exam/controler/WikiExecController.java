@@ -12,25 +12,27 @@ public class WikiExecController {
 	
 	public static void run(Map<String, String> arguments) {
 		String url = arguments.get(Parameters.url.toString());
-		System.out.println("Loadding... " + url);
 		if (url==null) { 
-			System.err.println("url parameter need it"); 
+			System.err.println("'url' parameter needed... example : 'url=https://en.wikipedia.org/wiki/Chicken'"); 
 			return; 
 		}
 		
-		String out = MyUtils.prettyJson(new WikiReader(url).begin());
-			
+		String fileName = null;
 		if (arguments.containsKey(Parameters.file.toString())){
-			String fileName = arguments.get(Parameters.file.toString());
-			
-			if (fileName==null) { 
-				System.err.println("file=file_name parameter need it"); 
+			fileName = arguments.get(Parameters.file.toString());
+			if (fileName == null) { 
+				System.err.println("file parameter needed... example : 'file=C:/Users/demian/report.json'"); 
 				return; 
 			}
+		}
+		
+		System.out.println("Loadding... " + url);
+		String out = MyUtils.prettyJson(new WikiReader(url).begin());
 			
+		if (fileName != null){			
 			try (FileWriter file = new FileWriter(fileName)) {
 				file.write(out);
-				System.out.println("Export to "+fileName);
+				System.out.println("correct exported to file -> "+fileName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
