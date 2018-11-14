@@ -1,6 +1,6 @@
 	@Autor: 	Demian Bolivar
 	@date: 		14/11/2018
-	@docVersion: 1.0.2
+	@docVersion: 1.0.3
 	@description: 
 	
 		• Take the name of a wikipedia page as input
@@ -31,7 +31,7 @@
 	
 	  + To use this program need to access to command prompt and execute the next command:
 	  
-	  	--------------------- execute mode parameters --------------------------- ( M -> Mandatory, O -> Optional )
+	********************************** execute mode parameters **** ( M -> Mandatory, O -> Optional )
 	  	
 	  	java -jar WikiApp-1.0.0.jar execute
 		 
@@ -47,7 +47,7 @@
 					in it, have a the same json structure that server mode, you can have more details in the "EXAMPLE_1"
 					 at end of this document.
 			   
-		--------------------- server mode parameters --------------------------- ( M -> Mandatory, O -> Optional )
+	********************************** server mode parameters **** ( M -> Mandatory, O -> Optional )
 			   
 	    java -jar WikiApp-1.0.0.jar service
 	    
@@ -80,7 +80,7 @@
 					     "topicList": [...] 								--> array of same structure before, content the fifth strongest results (can be less results).
 				     }
 				    
-			   		 ----------  example json response ----BEGIN------- EXAMPLE_1
+	********************************** EXAMPLE_1 json response **** BEGIN ******** 
 					  {
 					    "keyWord": "Love",
 					    "extract": "....the text content of page...",
@@ -124,7 +124,7 @@
 					        }
 					    ]
 					}
-					----------  example json response ---END---------
+	********************************** EXAMPLE_1 json response **** END ******** 
 			  
 			  
 			  
